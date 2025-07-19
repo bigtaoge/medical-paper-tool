@@ -1,8 +1,6 @@
 # 🏥 医学影像论文写作辅助工具
 
-[![Deploy to Cloudflare Pages](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/你的用户名/medical-paper-tool)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub Pages](https://img.shields.io/badge/Deployed%20on-Cloudflare%20Pages-orange)](https://medical-paper-tool.pages.dev)
+
 
 > 🎯 **专业的医学影像研究论文写作与数据分析平台**  
 > 为医学研究人员提供一站式论文写作、数据分析和图表制作解决方案
@@ -73,12 +71,6 @@
 
 ---
 
-## 🚀 在线使用
-
-### 🌐 访问地址
-**主站点**: [https://medical-paper-tool.pages.dev](https://medical-paper-tool.pages.dev)
-
-*🌍 全球CDN加速 | 🔒 HTTPS安全连接 | 📱 移动端适配*
 
 ### ⚡ 快速开始
 1. **论文写作** → 选择"论文结构"标签 → 按提示填写各部分内容
@@ -88,34 +80,6 @@
 
 ---
 
-## 💻 本地使用
-
-### 方法一：直接打开 (推荐)
-```bash
-# 克隆项目
-git clone https://github.com/你的用户名/medical-paper-tool.git
-cd medical-paper-tool
-
-# 直接打开
-open index.html        # macOS
-start index.html       # Windows  
-xdg-open index.html    # Linux
-```
-
-### 方法二：本地服务器
-```bash
-# Python 服务器 (推荐)
-python -m http.server 8000
-# 访问 http://localhost:8000
-
-# Node.js 服务器
-npx serve . -p 8000
-# 访问 http://localhost:8000
-
-# PHP 服务器
-php -S localhost:8000
-# 访问 http://localhost:8000
-```
 
 ---
 
@@ -212,8 +176,8 @@ php -S localhost:8000
 
 ### 🐛 问题报告
 遇到问题？请通过以下方式反馈：
-- [GitHub Issues](https://github.com/你的用户名/medical-paper-tool/issues) - 技术问题
-- [功能建议](https://github.com/你的用户名/medical-paper-tool/discussions) - 新功能讨论
+- [GitHub Issues](https://github.com/bigtaoge/medical-paper-tool/issues) - 技术问题
+- [功能建议](https://github.com/bigtaoge/medical-paper-tool/discussions) - 新功能讨论
 
 ### 💡 功能建议
 欢迎提出改进建议：
