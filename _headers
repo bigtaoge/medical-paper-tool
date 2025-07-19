@@ -1,0 +1,337 @@
+# _headers - Cloudflare Pages HTTP头配置文件
+# 用于优化缓存、提升安全性和改善性能
+
+# ===========================================
+# 全局安全头配置 - 适用于所有文件
+# ===========================================
+/*
+  # 安全相关头部
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  
+  # HTTPS安全传输
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  
+  # 内容安全策略 - 允许必要的外部资源
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none';
+  
+  # 缓存控制 - 默认长期缓存
+  Cache-Control: public, max-age=31536000, immutable
+  
+  # 压缩优化
+  Vary: Accept-Encoding
+  
+  # 自定义头部 - 标识网站
+  X-Powered-By: Cloudflare Pages
+  X-Application: 医学影像论文写作辅助工具
+  X-Version: 2.0
+
+# ===========================================
+# HTML文件配置 - 主页面和动态内容
+# ===========================================
+/*.html
+  # HTML文件不缓存，确保更新及时生效
+  Cache-Control: public, max-age=0, must-revalidate
+  
+  # 启用压缩
+  Vary: Accept-Encoding
+  
+  # 语言设置
+  Content-Language: zh-CN
+  
+  # 字符编码
+  Content-Type: text/html; charset=utf-8
+
+# 主页特殊配置
+/index.html
+  # 主页不缓存，保证最新版本
+  Cache-Control: public, max-age=0, must-revalidate, no-cache
+  
+  # SEO相关头部
+  X-Robots-Tag: index, follow
+  
+  # 页面类型标识
+  X-Page-Type: main-application
+
+# ===========================================
+# 静态资源缓存配置 - 长期缓存优化
+# ===========================================
+
+# JavaScript文件 - 长期缓存
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: application/javascript; charset=utf-8
+  Vary: Accept-Encoding
+
+# CSS文件 - 长期缓存  
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: text/css; charset=utf-8
+  Vary: Accept-Encoding
+
+# ===========================================
+# 图片文件缓存配置
+# ===========================================
+
+# PNG图片
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/png
+  Vary: Accept-Encoding
+
+# JPEG图片
+/*.jpg
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/jpeg
+  Vary: Accept-Encoding
+
+# GIF图片
+/*.gif
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/gif
+  Vary: Accept-Encoding
+
+# SVG图片
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/svg+xml; charset=utf-8
+  Vary: Accept-Encoding
+
+# WebP图片 (现代浏览器优化)
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/webp
+  Vary: Accept-Encoding
+
+# ICO图标
+/*.ico
+/favicon.ico
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/x-icon
+
+# ===========================================
+# 字体文件缓存配置
+# ===========================================
+
+# WOFF字体 (推荐格式)
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: font/woff
+  Vary: Accept-Encoding
+
+# WOFF2字体 (最佳压缩)
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: font/woff2
+  Vary: Accept-Encoding
+
+# TTF字体
+/*.ttf
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: font/ttf
+  Vary: Accept-Encoding
+
+# EOT字体 (IE兼容)
+/*.eot
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: application/vnd.ms-fontobject
+
+# ===========================================
+# 数据文件缓存配置
+# ===========================================
+
+# JSON数据文件 - 短期缓存
+/*.json
+  Cache-Control: public, max-age=300
+  Content-Type: application/json; charset=utf-8
+  Vary: Accept-Encoding
+
+# CSV数据文件 - 短期缓存
+/*.csv
+  Cache-Control: public, max-age=300
+  Content-Type: text/csv; charset=utf-8
+  Content-Disposition: attachment
+  Vary: Accept-Encoding
+
+# 文本文件 - 短期缓存
+/*.txt
+  Cache-Control: public, max-age=300
+  Content-Type: text/plain; charset=utf-8
+  Vary: Accept-Encoding
+
+# XML文件
+/*.xml
+  Cache-Control: public, max-age=3600
+  Content-Type: application/xml; charset=utf-8
+  Vary: Accept-Encoding
+
+# ===========================================
+# 特殊文件配置
+# ===========================================
+
+# Robots.txt - SEO优化
+/robots.txt
+  Cache-Control: public, max-age=86400
+  Content-Type: text/plain; charset=utf-8
+
+# Sitemap - SEO优化
+/sitemap.xml
+  Cache-Control: public, max-age=86400
+  Content-Type: application/xml; charset=utf-8
+
+# Manifest文件 - PWA支持
+/manifest.json
+/site.webmanifest
+  Cache-Control: public, max-age=86400
+  Content-Type: application/manifest+json; charset=utf-8
+
+# ===========================================
+# 下载文件配置
+# ===========================================
+
+# PDF文件 - 研究报告下载
+/*.pdf
+  Cache-Control: public, max-age=300
+  Content-Type: application/pdf
+  Content-Disposition: attachment
+
+# Word文档下载
+/*.doc
+/*.docx
+  Cache-Control: public, max-age=300
+  Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+  Content-Disposition: attachment
+
+# Excel文件下载
+/*.xlsx
+/*.xls
+  Cache-Control: public, max-age=300
+  Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+  Content-Disposition: attachment
+
+# 压缩文件下载
+/*.zip
+  Cache-Control: public, max-age=300
+  Content-Type: application/zip
+  Content-Disposition: attachment
+
+# ===========================================
+# API接口配置 (预留)
+# ===========================================
+
+# API路径配置 (如果将来添加API功能)
+/api/*
+  Cache-Control: no-cache, no-store, must-revalidate
+  Content-Type: application/json; charset=utf-8
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+  Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With
+  Access-Control-Max-Age: 86400
+
+# ===========================================
+# 错误页面配置
+# ===========================================
+
+# 404错误页面
+/404.html
+  Cache-Control: public, max-age=300
+  Content-Type: text/html; charset=utf-8
+  X-Page-Type: error-page
+
+# 500错误页面
+/500.html
+  Cache-Control: public, max-age=300
+  Content-Type: text/html; charset=utf-8
+  X-Page-Type: error-page
+
+# ===========================================
+# Cloudflare专用配置
+# ===========================================
+
+# Cloudflare配置文件不缓存
+/_headers
+/_redirects
+/wrangler.toml
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# ===========================================
+# 开发相关文件配置
+# ===========================================
+
+# 开发脚本文件
+/*.sh
+  Cache-Control: no-cache, no-store, must-revalidate
+  Content-Type: text/plain; charset=utf-8
+
+# 配置文件
+/*.toml
+/*.yaml
+/*.yml
+  Cache-Control: no-cache, no-store, must-revalidate
+  Content-Type: text/plain; charset=utf-8
+
+# ===========================================
+# 自定义扩展配置
+# ===========================================
+
+# 医学数据文件 (DICOM等，如果支持)
+/*.dcm
+/*.dicom
+  Cache-Control: no-cache, no-store, must-revalidate
+  Content-Type: application/dicom
+  X-Content-Type-Options: nosniff
+
+# 统计分析结果文件
+/*.spss
+/*.sas
+/*.stata
+  Cache-Control: public, max-age=300
+  Content-Disposition: attachment
+
+# ===========================================
+# 性能优化头部
+# ===========================================
+
+# 启用预加载指令 (适用于重要资源)
+/index.html
+  Link: </style.css>; rel=preload; as=style
+  Link: <https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js>; rel=preload; as=script
+
+# ===========================================
+# 监控和分析配置
+# ===========================================
+
+# 添加性能监控头部
+/*
+  # 网站性能监控
+  X-Response-Time-Start: ${timestamp}
+  
+  # 流量分析标识
+  X-Visitor-ID: ${cf.visitor_id}
+  
+  # 地理位置信息 (Cloudflare提供)
+  X-Country: ${cf.country}
+  X-Region: ${cf.region}
+
+# ===========================================
+# 说明注释
+# ===========================================
+# 
+# 配置说明：
+# 1. 所有静态资源(JS/CSS/图片)设置1年缓存(31536000秒)
+# 2. HTML文件不缓存，确保内容更新及时
+# 3. 数据文件短期缓存(5分钟)，平衡性能和数据新鲜度  
+# 4. 安全头部防止XSS、点击劫持等攻击
+# 5. 压缩优化减少传输数据量
+# 6. 针对医学工具特殊需求定制配置
+#
+# 注意事项：
+# - 修改此文件后需要重新部署生效
+# - Cloudflare Pages自动应用这些配置
+# - 某些头部可能被Cloudflare的默认设置覆盖
+# - 建议定期检查和更新安全策略
+#
